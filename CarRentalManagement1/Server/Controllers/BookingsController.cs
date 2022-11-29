@@ -36,8 +36,8 @@ namespace CarRentalManagement1.Server.Controllers
         {
             //Refactored
             //return await _context.Bookings.ToListAsync();
-            var bookings = await _unitOfWork.Bookings.GetAll();
-            return Ok(bookings);
+            var Bookings = await _unitOfWork.Bookings.GetAll(includes: q => q.Include(x =>x.Vehicle).Include(x => x.Customer));
+            return Ok(Bookings);
         }
 
         // GET: api/Bookings/5
